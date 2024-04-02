@@ -1,6 +1,6 @@
 //************************************************
 // DXライブラリ マウスでお絵かき
-// 作成日：2024/04/02
+// 作成日：2024/04/03
 // 作成者：fujioka8700
 // Copyright (c) fujioka8700 All rights reserved.
 //************************************************
@@ -60,15 +60,14 @@ int WINAPI WinMain(
 
 	while (ProcessMessage() == 0)
 	{
-		DrawPalette(select);
-
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 		{
 			GetMousePoint(&now.X, &now.Y);
 
 			if (pre.X >= 0 && pre.Y >= 0)
 			{
-				DrawLineAA((float)pre.X, (float)pre.Y, (float)now.X, (float)now.Y, GetColor(255, 0, 0), 2.0f);
+				DrawLineAA((float)pre.X, (float)pre.Y, (float)now.X, (float)now.Y,
+					GetColor(ColorTB[select].R, ColorTB[select].G, ColorTB[select].B), 2.0f);
 			}
 			pre = now;
 		}
@@ -77,7 +76,10 @@ int WINAPI WinMain(
 			pre.X = pre.Y = -1;
 		}
 
-		FpsDraw(&fpsTimer, &windowSize);
+		SelectColor(&select);
+		DrawPalette(select);		
+
+		//FpsDraw(&fpsTimer, &windowSize);
 		ScreenFlip();
 	}
 
