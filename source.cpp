@@ -57,9 +57,11 @@ int WINAPI WinMain(
 
 	while (ProcessMessage() == 0)
 	{
-		GetMousePoint(&x, &y);
-		
-		DrawCircle(x, y, 2, GetColor(255, 0, 0), TRUE);
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+		{
+			GetMousePoint(&x, &y);
+			DrawCircle(x, y, 2, GetColor(255, 0, 0), TRUE);
+		}
 
 		FpsDraw(&fpsTimer, &windowSize);
 		ScreenFlip();
