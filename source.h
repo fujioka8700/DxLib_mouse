@@ -1,20 +1,19 @@
 #pragma once
-#ifndef SOURCE_HPP_
-#define SOURCE_HPP_
+#ifndef SOURCE_H_
+#define SOURCE_H_
 
 //================================================
-// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚º
+// ŠT—vFƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY
 //================================================
-struct Size {
+typedef struct {
 	int width, height;
-};
+} Size;
 
 //================================================
-// ãƒã‚¤ãƒ³ã‚¿ã®å ´æ‰€
+// ŠT—vFƒ|ƒCƒ“ƒ^‚ÌêŠ
 //================================================
-struct POS
-{
+typedef struct {
 	int X, Y;
-};
+} POS;
 
-#endif // SOURCE_HPP_
+#endif // SOURCE_H_

@@ -6,10 +6,11 @@
 //************************************************
 
 #include <Dxlib.h>
-#include "source.hpp"
+#include "source.h"
+#include "palette.h"
 
 //================================================
-// FPSの計測と描画
+// 概要：FPSの計測と描画
 //================================================
 void FpsDraw(LONGLONG* p1, Size* p2)
 {
@@ -31,7 +32,8 @@ void FpsDraw(LONGLONG* p1, Size* p2)
 }
 
 //================================================
-// 主処理
+// 概要：主処理
+// 戻り値：正常／異常
 //================================================
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -50,6 +52,7 @@ int WINAPI WinMain(
 	LONGLONG fpsTimer;
 	Size windowSize;
 	POS pre = { -1, -1 }, now;
+	int select = 0;
 
 	GetWindowSize(&windowSize.width, &windowSize.height);
 
@@ -57,6 +60,8 @@ int WINAPI WinMain(
 
 	while (ProcessMessage() == 0)
 	{
+		DrawPalette(select);
+
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 		{
 			GetMousePoint(&now.X, &now.Y);
