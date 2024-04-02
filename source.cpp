@@ -49,7 +49,7 @@ int WINAPI WinMain(
 
 	LONGLONG fpsTimer;
 	Size windowSize;
-	int x, y;
+	POS pre = { -1, -1 }, now;
 
 	GetWindowSize(&windowSize.width, &windowSize.height);
 
@@ -59,8 +59,17 @@ int WINAPI WinMain(
 	{
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 		{
-			GetMousePoint(&x, &y);
-			DrawCircle(x, y, 2, GetColor(255, 0, 0), TRUE);
+			GetMousePoint(&now.X, &now.Y);
+
+			if (pre.X >= 0 && pre.Y >= 0)
+			{
+				DrawLineAA((float)pre.X, (float)pre.Y, (float)now.X, (float)now.Y, GetColor(255, 0, 0), 2.0f);
+			}
+			pre = now;
+		}
+		else
+		{
+			pre.X = pre.Y = -1;
 		}
 
 		FpsDraw(&fpsTimer, &windowSize);
