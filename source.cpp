@@ -47,7 +47,7 @@ int WINAPI WinMain(
 
 	if (DxLib_Init() == -1) return -1;
 
-	LONGLONG fpsTimer, deltaTimer;
+	LONGLONG fpsTimer;
 	Size windowSize;
 	int x, y;
 
