@@ -25,6 +25,7 @@ int WINAPI WinMain(
 #endif // !_DEBUG
 
 	ChangeWindowMode(TRUE);
+	SetMainWindowText("マウスで、お絵かき♪(*'-'*)ノ");
 
 	if (DxLib_Init() == -1) return -1;
 
@@ -54,6 +55,8 @@ int WINAPI WinMain(
 		{
 			pre.X = pre.Y = -1;
 		}
+
+		CheckDoubleClick();
 
 		SelectColor(&select);
 		DrawPalette(select);		

@@ -13,6 +13,7 @@ PALETTE ColorTB[] = {
 
 const int COLOR_NUM = sizeof(ColorTB) / sizeof(ColorTB[0]);
 const int RADIUS = 20;
+static bool MouseLeftClick = false;
 
 void DrawPalette(int index)
 {
@@ -31,10 +32,14 @@ void SelectColor(int* index)
 {
 	int button, clickX, clickY, logType;
 
+	MouseLeftClick = false;
+
 	if (GetMouseInputLog2(&button, &clickX, &clickY, &logType, TRUE) == 0)
 	{
 		if ((button & MOUSE_INPUT_LEFT) != 0 && logType == MOUSE_INPUT_LOG_UP)
 		{
+			MouseLeftClick = true;
+
 			for (int i = 0; i < COLOR_NUM; i++)
 			{
 				double d = pow((clickX - ColorTB[i].POS.X), 2) + pow((clickY - ColorTB[i].POS.Y), 2);
@@ -45,5 +50,24 @@ void SelectColor(int* index)
 				}
 			}
 		}
+	}
+}
+
+void CheckDoubleClick(void)
+{
+	const int DOUBLE_CLICK_INTERVAL = 300;
+	static int lastClickTime = 0;
+	int now = GetNowCount();
+
+	if (MouseLeftClick && lastClickTime == 0)
+	{
+		lastClickTime = now;
+	}
+	else if (MouseLeftClick && now - lastClickTime <= DOUBLE_CLICK_INTERVAL) {
+		ClearDrawScreen();
+		lastClickTime = 0;
+	}
+	else if (now - lastClickTime > DOUBLE_CLICK_INTERVAL) {
+		lastClickTime = 0;
 	}
 }
