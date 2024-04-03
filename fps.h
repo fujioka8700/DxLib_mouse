@@ -1,0 +1,12 @@
+#pragma once
+#ifndef FPS_H_
+#define FPS_H_
+
+#include "source.h"
+
+//================================================
+// äTóvÅFFPSÇÃåvë™Ç∆ï`âÊ
+//================================================
+void FpsDraw(LONGLONG* p1, Size* p2);
+
+#endif // FPS_H_
