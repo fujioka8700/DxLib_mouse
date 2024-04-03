@@ -20,7 +20,7 @@ void DrawPalette(int index)
 	DrawCircle(50, 30, RADIUS,
 		GetColor(ColorTB[index].R, ColorTB[index].G, ColorTB[index].B), TRUE);
 
-	for (size_t i = 0; i < COLOR_NUM; i++)
+	for (int i = 0; i < COLOR_NUM; i++)
 	{
 		DrawCircle(ColorTB[i].POS.X, ColorTB[i].POS.Y, RADIUS + 1,
 			GetColor(ColorTB[i].R, ColorTB[i].G, ColorTB[i].B), TRUE);
@@ -35,7 +35,7 @@ void SelectColor(int* index)
 	{
 		if ((button & MOUSE_INPUT_LEFT) != 0 && logType == MOUSE_INPUT_LOG_UP)
 		{
-			for (size_t i = 0; i < COLOR_NUM; i++)
+			for (int i = 0; i < COLOR_NUM; i++)
 			{
 				double d = pow((clickX - ColorTB[i].POS.X), 2) + pow((clickY - ColorTB[i].POS.Y), 2);
 				if (d <= pow(RADIUS, 2))

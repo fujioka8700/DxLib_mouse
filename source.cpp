@@ -49,7 +49,7 @@ int WINAPI WinMain(
 
 	if (DxLib_Init() == -1) return -1;
 
-	LONGLONG fpsTimer;
+	//LONGLONG fpsTimer;
 	Size windowSize;
 	POS pre = { -1, -1 }, now;
 	int select = 0;
